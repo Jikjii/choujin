@@ -48,7 +48,7 @@ export const rightsideui = () => {
                             </a>
                         </div>
                     </div>
-                    <hr className="border-gray-600">
+                    <hr className="border-gray-600" />
 
                     {/* <!--second trending tweet--> */}
 
@@ -65,7 +65,7 @@ export const rightsideui = () => {
                             </a>
                         </div>
                     </div>
-                    <hr className="border-gray-600">
+                    <hr className="border-gray-600" />
 
                     {/* <!--third trending tweet--> */}
 
@@ -82,7 +82,7 @@ export const rightsideui = () => {
                             </a>
                         </div>
                     </div>
-                    <hr className="border-gray-600">
+                    <hr className="border-gray-600" />
 
                     {/* <!--forth trending tweet--> */}
 
@@ -99,7 +99,7 @@ export const rightsideui = () => {
                             </a>
                         </div>
                     </div>
-                    <hr className="border-gray-600">
+                    <hr className="border-gray-600" />
 
                     {/* <!--show more--> */}
 
@@ -152,7 +152,7 @@ export const rightsideui = () => {
                             
                         </div>
                     </div>
-                    <hr className="border-gray-600">
+                    <hr className="border-gray-600" /> 
 
                     {/* <!--second person who to follow-->  */}
                         
@@ -183,7 +183,7 @@ export const rightsideui = () => {
                         </div>
                     </div>
 
-                    <hr className="border-gray-600">
+                    <hr className="border-gray-600" />
 
                    
 
@@ -207,6 +207,7 @@ export const rightsideui = () => {
                     <p className="text-sm leading-6 font-medium text-gray-600"> © 2020 Twitter, Inc.</p>
                 </div>
                 </div>
+        </div>
         </div>
         </div>
         </div>

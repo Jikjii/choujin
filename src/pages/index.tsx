@@ -2,8 +2,10 @@ import { SignIn, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { api } from "~/utils/api";
+
 import {
   Album,
   CreditCard,
@@ -93,7 +95,7 @@ const playlists = [
   "Eminem Essentials",
 ];
 
-const listenNowAlbums: Album[] = [
+const listenNowAlbums = [
   {
     name: "Async Awakenings",
     artist: "Nina Netcode",
@@ -120,7 +122,7 @@ const listenNowAlbums: Album[] = [
   },
 ];
 
-const madeForYouAlbums: Album[] = [
+const madeForYouAlbums = [
   {
     name: "Async Awakenings",
     artist: "Nina Netcode",
@@ -165,10 +167,40 @@ const madeForYouAlbums: Album[] = [
   },
 ];
 
+const CreatePostWizard = () => {
+  const { user } = useUser();
+
+  const [input, setInput] = useState("");
+
+  const ctx = api.useContext();
+
+  const { mutate, isLoading: isPosting } = api.posts.create.useMutation({
+    onSuccess: () => {
+      setInput("");
+      void ctx.posts.getAll.invalidate();
+    },
+    onError: (e) => {
+      const errorMessage = e.data?.zodError?.fieldErrors.content;
+      if (errorMessage && errorMessage[0]) {
+        toast.error(errorMessage[0]);
+      } else {
+        toast.error("Failed to post! Please try again later.");
+      }
+    },
+  });
+  console.log(user);
+
+  if (!user) return null;
+
+
 const Home: NextPage = () => {
   const user = useUser();
+  console.log(user);
 
   const { data } = api.posts.getAll.useQuery();
+  const [input, setInput] = useState("");
+
+  //TODO - create a working reacthook for the post
 
   return (
     <>
@@ -594,12 +626,22 @@ const Home: NextPage = () => {
                               />
                             </div>
                             <div className="mt-2 flex-1 px-2 pt-2">
-                              <textarea
+                              <input
                                 className=" w-full bg-transparent text-lg font-medium text-gray-400"
-                                rows="2"
-                                cols="50"
-                                placeholder="What's happening?"
-                              ></textarea>
+                                placeholder="Whats Happening"
+                                width={56}
+                                height={56}
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    if (input !== "") {
+                                      // mutate({ content: input });
+                                    }
+                                  }
+                                }}
+                              />
                             </div>
                           </div>
                           {/* <!--middle creat tweet below icons--> */}
