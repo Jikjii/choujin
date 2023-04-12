@@ -190,6 +190,8 @@ const CreatePostWizard = () => {
   });
   console.log(user);
 
+  //add user valid later on
+
   if (!user) return null;
 
 
