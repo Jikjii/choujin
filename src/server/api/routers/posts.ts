@@ -73,6 +73,9 @@ export const postsRouter = createTRPCRouter({
       return (await addUserDataToPosts([post]))[0];
     }),
 
+    //TODO - add getallfriends()
+    //TODO - getpostbyuser()
+    //TODO - getmostlikedpost()
   getAll: publicProcedure.query(async ({ ctx }) => {
     const posts = await ctx.prisma.post.findMany({
       take: 100,

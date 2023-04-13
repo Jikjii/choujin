@@ -873,7 +873,7 @@ const CreatePostWizard = () => {
       </>
     );
   };
- }
+ 
 
 
 export default Home;
